@@ -3,6 +3,7 @@
 import sinon from 'sinon'
 import chai, { expect } from 'chai'
 import dirtyChai from 'dirty-chai'
+import os from 'os'
 import mockElectron from './mocks/electron'
 import mockStore from './mocks/store'
 import mockWebUI from './mocks/webui'
@@ -42,6 +43,7 @@ describe('Create toggler', () => {
       expect(args[0]).to.equal('config.changed')
       expect(args[1]).to.deep.equal({
         changed: 'OPT',
+        platform: os.platform(),
         config: {
           OPT: true
         },
@@ -67,6 +69,7 @@ describe('Create toggler', () => {
       expect(args[0]).to.equal('config.changed')
       expect(args[1]).to.deep.equal({
         changed: 'OPT',
+        platform: os.platform(),
         config: {},
         success: false
       })
@@ -92,6 +95,7 @@ describe('Create toggler', () => {
       expect(args[0]).to.equal('config.changed')
       expect(args[1]).to.deep.equal({
         changed: 'OPT',
+        platform: os.platform(),
         config: {
           OPT: false
         },
@@ -119,6 +123,7 @@ describe('Create toggler', () => {
       expect(args[0]).to.equal('config.changed')
       expect(args[1]).to.deep.equal({
         changed: 'OPT',
+        platform: os.platform(),
         config: {
           OPT: true
         },
