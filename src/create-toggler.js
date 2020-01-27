@@ -1,4 +1,5 @@
 import { ipcMain } from 'electron'
+import os from 'os'
 import store from './common/store'
 import logger from './common/logger'
 
@@ -23,6 +24,7 @@ export default function ({ webui }, settingsOption, activate) {
     webui.webContents.send('config.changed', {
       config: store.store,
       changed: settingsOption,
+      platform: os.platform(),
       success
     })
   })

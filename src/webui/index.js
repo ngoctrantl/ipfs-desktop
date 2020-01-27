@@ -1,6 +1,7 @@
 import { screen, BrowserWindow, ipcMain, app, session } from 'electron'
 import { join } from 'path'
 import { URL } from 'url'
+import os from 'os'
 import serve from 'electron-serve'
 import openExternal from './open-external'
 import logger from '../common/logger'
@@ -101,7 +102,10 @@ export default async function (ctx) {
   })
 
   ipcMain.on('config.get', () => {
-    window.webContents.send('config.changed', { config: store.store })
+    window.webContents.send('config.changed', {
+      platform: os.platform(),
+      config: store.store
+    })
   })
 
   session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
